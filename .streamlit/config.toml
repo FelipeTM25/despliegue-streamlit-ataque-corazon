@@ -1,9 +1,18 @@
 [theme]
 base = "light"
-primaryColor = "#12233f"
+primaryColor = "#e0513c"
 backgroundColor = "#f4f6fb"
 secondaryBackgroundColor = "#ffffff"
 textColor = "#12233f"
+
+# Tema nativo del sidebar (Streamlit >= 1.46): asi los widgets
+# calculan solo su contraste sobre el fondo oscuro.
+[theme.sidebar]
+backgroundColor = "#12233f"
+secondaryBackgroundColor = "#24395e"
+textColor = "#e8edf6"
+primaryColor = "#2bb673"
+borderColor = "#42567a"
 
 [client]
 toolbarMode = "minimal"

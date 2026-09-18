@@ -60,16 +60,19 @@ st.markdown("""
     .barra { height:12px; border-radius:999px; background:#e6eaf2; overflow:hidden; }
     .barra > div { height:100%; border-radius:999px; }
     div[data-testid="stMetricValue"] { color:#12233f; }
-    /* toggles: el riel debe verse sobre el fondo navy del sidebar */
-    section[data-testid="stSidebar"] div[data-baseweb="checkbox"] div[role="checkbox"] {
-        background-color:#3a4c6d !important;
-        border:1px solid #6b7e9e !important;
+    /* toggles: el riel se dibuja como [role="checkbox"] (span o div segun
+       la version de Streamlit), por eso no se fija la etiqueta */
+    section[data-testid="stSidebar"] [role="checkbox"] {
+        background-color:#41557a !important;
+        border:1px solid #8497b5 !important;
+        box-shadow:none !important;
     }
-    section[data-testid="stSidebar"] div[data-baseweb="checkbox"] div[role="checkbox"][aria-checked="true"] {
+    section[data-testid="stSidebar"] [role="checkbox"][aria-checked="true"] {
         background-color:#2bb673 !important;
-        border-color:#2bb673 !important;
+        border-color:#7fe0b3 !important;
     }
-    section[data-testid="stSidebar"] div[data-baseweb="checkbox"] div[role="checkbox"] div {
+    /* la perilla, sea div o span, siempre blanca */
+    section[data-testid="stSidebar"] [role="checkbox"] > * {
         background-color:#ffffff !important;
     }
 
