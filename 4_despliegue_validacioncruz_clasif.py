@@ -60,12 +60,30 @@ st.markdown("""
     .barra { height:12px; border-radius:999px; background:#e6eaf2; overflow:hidden; }
     .barra > div { height:100%; border-radius:999px; }
     div[data-testid="stMetricValue"] { color:#12233f; }
+    /* toggles: el riel debe verse sobre el fondo navy del sidebar */
+    section[data-testid="stSidebar"] div[data-baseweb="checkbox"] div[role="checkbox"] {
+        background-color:#3a4c6d !important;
+        border:1px solid #6b7e9e !important;
+    }
+    section[data-testid="stSidebar"] div[data-baseweb="checkbox"] div[role="checkbox"][aria-checked="true"] {
+        background-color:#2bb673 !important;
+        border-color:#2bb673 !important;
+    }
+    section[data-testid="stSidebar"] div[data-baseweb="checkbox"] div[role="checkbox"] div {
+        background-color:#ffffff !important;
+    }
+
+    /* boton de accion: color propio, no el navy del fondo */
     div.stButton > button, div.stFormSubmitButton > button {
-        background:#12233f; color:#ffffff; border:1px solid #12233f;
-        border-radius:8px; font-weight:600; width:100%;
+        background:#e0513c; color:#ffffff !important; border:1px solid #e0513c;
+        border-radius:8px; font-weight:700; width:100%;
+        padding:.45rem 0; letter-spacing:.02em;
     }
     div.stButton > button:hover, div.stFormSubmitButton > button:hover {
-        background:#1d3a66; border-color:#1d3a66; color:#ffffff;
+        background:#c43f2c; border-color:#c43f2c; color:#ffffff !important;
+    }
+    div.stButton > button p, div.stFormSubmitButton > button p {
+        color:#ffffff !important; font-weight:700;
     }
     </style>
 """, unsafe_allow_html=True)
