@@ -27,15 +27,15 @@ st.markdown("""
     section[data-testid="stSidebar"] { background-color:#12233f; }
     section[data-testid="stSidebar"] * { color:#e8edf6 !important; }
 
-    /* los campos llenables van sobre fondo claro: texto oscuro */
+    /* los campos van sobre el fondo oscuro del tema del sidebar: texto claro */
     section[data-testid="stSidebar"] input,
     section[data-testid="stSidebar"] textarea,
     section[data-testid="stSidebar"] div[data-baseweb="select"] div,
     section[data-testid="stSidebar"] div[data-baseweb="select"] span,
     section[data-testid="stSidebar"] div[data-testid="stNumberInputContainer"] button {
-        color:#12233f !important;
+        color:#ffffff !important;
     }
-    section[data-testid="stSidebar"] input::placeholder { color:#7b8aa3 !important; }
+    section[data-testid="stSidebar"] input::placeholder { color:#9fb0c9 !important; }
 
     /* sidebar compacto: que la ficha completa quepa sin scroll */
     section[data-testid="stSidebar"] div[data-testid="stSidebarUserContent"] {
