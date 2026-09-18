@@ -26,6 +26,32 @@ st.markdown("""
     .stApp { background-color:#f4f6fb; }
     section[data-testid="stSidebar"] { background-color:#12233f; }
     section[data-testid="stSidebar"] * { color:#e8edf6 !important; }
+
+    /* los campos llenables van sobre fondo claro: texto oscuro */
+    section[data-testid="stSidebar"] input,
+    section[data-testid="stSidebar"] textarea,
+    section[data-testid="stSidebar"] div[data-baseweb="select"] div,
+    section[data-testid="stSidebar"] div[data-baseweb="select"] span,
+    section[data-testid="stSidebar"] div[data-testid="stNumberInputContainer"] button {
+        color:#12233f !important;
+    }
+    section[data-testid="stSidebar"] input::placeholder { color:#7b8aa3 !important; }
+
+    /* sidebar compacto: que la ficha completa quepa sin scroll */
+    section[data-testid="stSidebar"] div[data-testid="stSidebarUserContent"] {
+        padding-top:1.2rem; padding-bottom:.5rem;
+    }
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] { gap:.45rem; }
+    section[data-testid="stSidebar"] div[data-testid="stForm"] {
+        border:none; padding:0;
+    }
+    section[data-testid="stSidebar"] label p { font-size:.86rem; margin-bottom:0; }
+    section[data-testid="stSidebar"] .titulo-ficha {
+        font-size:1.05rem; font-weight:700; margin:0;
+    }
+    section[data-testid="stSidebar"] .nota-ficha {
+        font-size:.76rem; color:#9fb0c9 !important; margin:0 0 .5rem 0;
+    }
     .kicker { font-size:.78rem; letter-spacing:.14em; text-transform:uppercase;
               color:#5b6b85; margin-bottom:.15rem; }
     .titulo { font-size:1.9rem; font-weight:700; color:#12233f; margin:0 0 .2rem 0; }
@@ -55,22 +81,29 @@ modelo, labelencoder, variables, min_max_scaler = cargar_modelo()
 
 # ---------------------------------------------------------------- entradas (sidebar)
 with st.sidebar:
-    st.markdown("### Ficha del paciente")
-    st.caption("Completa los campos y pulsa *Evaluar paciente*.")
+    st.markdown('<div class="titulo-ficha">Ficha del paciente</div>', unsafe_allow_html=True)
+    st.markdown('<div class="nota-ficha">Completa los campos y pulsa Evaluar paciente.</div>',
+                unsafe_allow_html=True)
 
     with st.form("ficha"):
-        age = st.number_input('Edad (años)', min_value=1, max_value=82, value=45, step=1)
-        avg_glucose_level = st.number_input(
-            'Glucosa promedio (mg/dL)', min_value=55.0, max_value=272.0, value=100.0, step=0.5
+        c1, c2 = st.columns(2)
+        age = c1.number_input('Edad (años)', min_value=1, max_value=82, value=45, step=1)
+        avg_glucose_level = c2.number_input(
+            'Glucosa (mg/dL)', min_value=55.0, max_value=272.0, value=100.0, step=0.5
         )
-        hypertension = st.radio('Hipertensión', ['No', 'Yes'], horizontal=True)
-        heart_disease = st.radio('Enfermedad cardíaca previa', ['No', 'Yes'], horizontal=True)
-        ever_married = st.radio('Alguna vez casado/a', ['No', 'Yes'], horizontal=True)
-        smoking_status = st.select_slider(
+
+        smoking_status = st.selectbox(
             'Hábito de fumar',
             options=["'never smoked'", "'formerly smoked'", "smokes", "Unknown"],
-            value="'never smoked'",
+            index=0,
         )
+
+        # Los toggles ocupan mucha menos altura que tres radios Yes/No
+        hypertension = 'Yes' if st.toggle('Hipertensión') else 'No'
+        heart_disease = 'Yes' if st.toggle('Enfermedad cardíaca previa') else 'No'
+        ever_married = 'Yes' if st.toggle('Alguna vez casado/a') else 'No'
+
+        st.write("")
         evaluar = st.form_submit_button('Evaluar paciente')
 
 # ---------------------------------------------------------------- encabezado
